@@ -76,14 +76,39 @@ if (!class_exists('Mc_YT_Video_Downloader')) {
         public function mc_youtube_render_downloader($text)
         {
             // css
+            wp_enqueue_style('mc-youtube-video-downloader-bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', [], null, 'all');
             wp_enqueue_style('mc-youtube-video-downloader-style', trailingslashit(plugin_dir_url(__FILE__)) . 'assets/css/style.css', [], null, 'all');
             // js
+            wp_enqueue_script('mona-youtube-video-downloader-bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', [], true);
             wp_enqueue_script('mona-youtube-video-downloader-script', trailingslashit(plugin_dir_url(__FILE__)) . 'assets/js/script.js', ['jquery'], true);
 
             ?>
-<h1 class="mc-youtube-video-downloader-h1">Mc YouTube Video Downloader
-    <?= $text ?>
-</h1>
+<div class="container">
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="card-title">YouTube video downloader</div>
+            <form method="post" action="" class="yt-video-downloader-ajax-form">
+                <div class="mb-3">
+                    <label for="yt_video_url yt-video-downloader-label">YouTube Link</label>
+                    <input type="url" name="yt_video_url" class="form-control yt-video-downloader-input"
+                        placeholder="https://www.youtube.com/watch?v=jADTdg-o8i0">
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-danger yt-video-downloader-btn">Get Video</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- video info box -->
+    <div class="card shodow mt-5 yt-video-downloader-info-box">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <img src="" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- end video info box -->
+</div>
 <?php }
 
         /**
